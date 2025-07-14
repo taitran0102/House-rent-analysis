@@ -317,9 +317,9 @@ good   0.514827018 0.224924012 0.165745856
 normal 0.464579901 0.746200608 0.828729282
 top    0.020593081 0.028875380 0.005524862
 \end{lstlisting}
-\subsubsection*{Model Applications}
+\subsubsection*{Model Interpretation}
  The \lstinline[language=R]|rent| is directly related to the property's area (\lstinline[language=R]|area|), year of construction (\lstinline[language=R]|year_group|), and the presence of high-quality bathroom and upscale kitchen equipment (\lstinline[language=R]|bathextra| and \lstinline[language=R]|upkitchen|). The remaining factors are indirectly related to the rental price through these direct factors. Given information about the direct factors, the indirect factors become conditionally independent of the rental price.
-\section*{Use the Model}
+\section*{Model Applications}
 Once the model has been learned from the data, it is used for several purposes, including the following:
 \subsection*{Analyzing Conditional Independencies}
 It can be simply understood that when variables X and Y are conditionally independent given Z, this means that once the information about Z is known, knowing X provides no additional information about Y, and vice versa.\\
@@ -348,5 +348,14 @@ Note that this probability approximation function is based on a randomized algor
 The argument \lstinline[language=R]|n|  controls the number of samples: the larger its value, the more accurate the result will be, but at the cost of increased computational time.
 
 \section*{Querying and Predicting}
-Based on the above applications, I now perform queries to answer specific questions and make some predictions. The results will be presented here, while the corresponding code can be found in the accompanying R script.
+Based on the previous applications, I will now perform queries to extract useful insights and also make some predictions.
+The results will be presented here, while the corresponding code can be found in the accompanying \lstinline[language=R]|R| script.
+\subsection*{Insights}
+\begin{itemize}
+	\item Area and number of rooms are not directly influenced by location, year of construction, or the heating and hot water systems. However, once the price segment is fixed, these factors become relevant and should be considered jointly.
+	\item According to the model, when filtering houses by year of construction, the location and heating/hot water systems do not need to be considered in rental price analysis.
+	\item Area alone is sufficient to determine the rental price, without the need to consider the number of rooms (as shown in the previous example).
+	\item Within each price segment, there are no additional factors that influence whether a house is equipped with high-quality bathroom features (bathextra) or upscale kitchen equipment (upkitchen).
+\end{itemize}
+\subsection*{Prediction}
 \end{document}
