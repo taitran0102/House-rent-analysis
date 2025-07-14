@@ -47,7 +47,7 @@ This project explores the factors that influence rental prices in Munich and mak
   <em>Directed Acyclic Graph of the Final Model</em>
 </p>
 
-The rental price (`rent`) is directly related to the property's area (`area`), year of construction (`year_group`, a grouped version of `yearc` with reduced number of levels), and the presence of high-quality bathroom and upscale kitchen equipment (`bathextra` and `upkitchen`). The remaining factors are indirectly related to the rental price through these direct factors. Given information about the direct factors, the indirect factors become conditionally independent of the rental price (see Section ... of the [Report](https://github.com/taitran0102/rent-analysis/blob/main/Report/Report.pdf)).
+The rental price (`rent`) is directly related to the property's area (`area`), year of construction (`year_group`, a grouped version of `yearc` with reduced number of levels), and the presence of high-quality bathroom and upscale kitchen equipment (`bathextra` and `upkitchen`). The remaining factors are indirectly related to the rental price through these direct factors. Given information about the direct factors, the indirect factors become conditionally independent of the rental price.
 
 For predicting purpose, we can compute the conditional probability like ... (see Section ... of the [Report](https://github.com/taitran0102/rent-analysis/blob/main/Report/Report.pdf) ) which answer for the question ...
 
