@@ -93,7 +93,7 @@
 	\boxed{\huge \textbf{House Rent Analysis}}
 \]
 \section*{Data Preparation}
-I have introduced the dataset \lstinline[language=R]|munichrent03| which is integrated in the R package \lstinline[language=R]|LinRegInteractive|, available at \href{https://github.com/taitran0102/rent-analysis/blob/main/README.md}{README.md} file. Therefore, I can simply load this dataset to begin the subsequent steps of the analysis.
+I have introduced the dataset \lstinline[language=R]|munichrent03| which is integrated in the R package \lstinline[language=R]|LinRegInteractive|, available at \textbf{\href{https://github.com/taitran0102/rent-analysis/blob/main/README.md}{README.md}} file. Therefore, I can simply load this dataset to begin the subsequent steps of the analysis.
 \begin{lstlisting}[language=R]
 library(LinRegInteractive)
 data(munichrent03)
@@ -180,7 +180,7 @@ Maxvor   Neuh-Nymp    Lud-Isar    SchwWest     Au-Haid Schwab-Frei    Trud-Rie
 	\begin{figure}[H]
 		\centering \includegraphics[width=\textwidth]{unnamed-chunk-10-1.png}
 	\end{figure}
-	\item The variable\lstinline[language=R]|yearc| represents discrete individual years, and the number of rooms(\lstinline[language=R]|room|)ranges only from 1 to 6.
+	\item The variable \lstinline[language=R]|yearc| represents discrete individual years, and the number of rooms(\lstinline[language=R]|room|)ranges only from 1 to 6.
 		\begin{lstlisting}[language=R]
 > table(data$room) #Count for each number of room
 
@@ -200,15 +200,82 @@ Maxvor   Neuh-Nymp    Lud-Isar    SchwWest     Au-Haid Schwab-Frei    Trud-Rie
 32      7     18      5 
 	\end{lstlisting}
 \end{itemize}
-
 \section*{Graphical Model Learning}
-\section*{Inference and Querying}
-\newpage
+\subsubsection*{More Data Preparation}
+To learn a model from the data, some additional preprocessing steps are required. From the earlier exploration, I observed that the dataset contains many categorical variables, and only two variables, namely rent and area, are truly continuous. 
 
-\[
-\mathbb{P}(X<1,Y>1)=\int_{-\infty}^{1}\int_{1}^{+\infty}f(x,y) dx dy 
-\]
+A Directed Graphical Model can be used to model data under two common distributional assumptions:
+\begin{itemize}
+	\item Multinomial (each variable is categorical)
+	\item Multivariate Normal
+\end{itemize}
+
+Since the dataset contains mostly categorical variables, I decided to model the data assuming a Multinomial distribution. Therefore, several variables needed to be transformed accordingly. Below is a summary of the preprocessing tasks (see the R code file for more details):
+\begin{itemize}
+	\item For the variable \lstinline[language=R]|yearc|, there are two values with decimals: \lstinline[language=R]|1957.5| and \lstinline[language=R]|1998.5|. I removed the decimal part to keep only the integer year.	After that, I created a new variable called \lstinline[language=R]|year_group| to extract information from \lstinline[language=R]|yearc| with fewer levels. Specifically, the years were grouped into the following periods: 1918–1959, 1960–1969, 1970–1989, and 1990–2001. 
+		\begin{lstlisting}[language=R]
+# Count for each periods
+1918-1959 1960-1969 1970-1989 1990-2001 
+890       473       471       219
+	\end{lstlisting}
+
+	
+	\item The variable \lstinline[language=R]|district| represents the 25 districts of Munich. If treated directly as a categorical variable, it would result in 25 levels, which would make computation extremely complex.
+	To address this, I created a new variable called \lstinline[language=R]|district_group|, which clusters the 25 districts into 3 broader areas. The grouping is based on the density of houses and geographical location. The figure below illustrates this grouping: the districts are sorted in descending order based on the number of houses.	Region 1 includes the districts marked with a bold dot.	Region 2 includes those marked with an "x", and Region 3 consists of the remaining districts.
+	\begin{figure}[H]
+		\centering \includegraphics[width=0.5\textwidth]{munich_district.jpg}
+	\end{figure}
+	Once the districts were grouped into three areas, the following shows the distribution of houses across the areas.
+			\begin{lstlisting}[language=R]
+> table(data$district_group)
+
+Area1 Area2 Area3 
+1214   658   181 
+	\end{lstlisting}
+	\item Next, the variable \lstinline[language=R]|rooms|, which indicates the number of rooms in each house and only takes values from 1 to 6, was converted into a factor and treated as a categorical variable. The variable \lstinline[language=R]|location| is an ordered factor by default, so I converted it into a regular (unordered) factor to ensure compatibility with the modeling functions.
+\begin{lstlisting}[language=R]
+> data$rooms <- as.factor(data$rooms)
+> data$location <- as.factor(as.character(data$location))
+\end{lstlisting}
+\item Now, only two continuous variables remain: \lstinline[language=R]|rent| and \lstinline[language=R]|area|. To model the data under the Multinomial distribution, I applied a discretization method to convert these variables into discrete ones, aiming to preserve as much information as possible. Specifically, the discretization technique used is called information-preserving discretization, also known as the \lstinline[language=R]|Hartemink| method. The details of this transformation are presented in the code file. For the sake of brevity, the method itself will not be discussed in this report. 
+
+The function that performs this task from the package \lstinline[language=R]|bnlearn| directly transforms the two mentioned continuous variables into discrete ones, without creating new variables. The \lstinline[language=R]|rent| and \lstinline[language=R]|area| variables have now been transformed into discrete variables, each divided into a set of intervals.
+\begin{lstlisting}[language=R]
+> table(data_disc$rent)
+
+[77.31,406.132] (406.132,687.072] (687.072,1789.55] 
+582               923               548 
+> table(data_disc$area)
+
+[17,44]  (44,78] (78,185] 
+307     1086      660 
+\end{lstlisting}
+The dataset after applying all the transformations described above is named \lstinline[language=R]|data_disc|, and its structure is as follows:
+\begin{lstlisting}[language=R]
+> str(data_disc)
+'data.frame':	2053 obs. of  11 variables:
+$ rent          : Factor w/ 3 levels "[77.31,406.132]",..: 3 3 2 2 3 3 1 2 2 1 ...
+$ area          : Factor w/ 3 levels "[17,44]","(44,78]",..: 2 2 2 2 3 3 2 3 2 2 ...
+$ rooms         : Factor w/ 6 levels "1","2","3","4",..: 2 2 3 3 4 4 2 3 1 3 ...
+$ bathextra     : Factor w/ 2 levels "no","yes": 1 1 1 2 2 1 2 1 1 1 ...
+$ bathtile      : Factor w/ 2 levels "yes","no": 1 1 1 1 1 1 1 1 1 1 ...
+$ cheating      : Factor w/ 2 levels "yes","no": 1 1 1 1 1 1 1 1 1 1 ...
+$ location      : Factor w/ 3 levels "good","normal",..: 1 1 1 2 1 2 2 2 2 2 ...
+$ upkitchen     : Factor w/ 2 levels "no","yes": 1 1 1 1 2 1 1 1 1 1 ...
+$ wwater        : Factor w/ 2 levels "yes","no": 1 1 1 1 1 1 1 1 1 1 ...
+$ year_group    : Factor w/ 4 levels "1918-1959","1960-1969",..: 1 4 1 3 4 3 1 1 1 1 ...
+$ district_group: Factor w/ 3 levels "Area1","Area2",..: 1 1 1 2 2 2 2 2 2 2 ...
+\end{lstlisting}
+\end{itemize}
+\subsection*{Model Learning}
+The detailed implementation for learning models from the data and selecting the most appropriate one can be found in the accompanying R code file. Additionally, understanding the modeling process requires background knowledge in topics related to Directed Graphical Models, such as learning methods, model learning algorithms, and more. A full discussion of these topics is beyond the scope of this report. Therefore, I will only present the final result.
+For a deeper understanding of Directed Graphical Models, one may refer to the book: \textbf{\href{https://www.bnlearn.com/book-crc-2ed/}{Bayesian Networks With Examples in R}}.\\
+
+After the model learning process and the selection of the most appropriate model, we arrive at the following result:
 \begin{figure}[H]
 	\centering \includegraphics[width=0.6\textwidth]{unnamed-chunk-30-2.png}
 \end{figure}
+\section*{Inference and Querying}
+\newpage
+
 \end{document}

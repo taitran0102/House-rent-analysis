@@ -107,6 +107,7 @@ data$year_group <- cut(data$yearc,
   breaks = c(1917, 1959, 1969, 1989, 2001),
   labels = c("1918-1959", "1960-1969", "1970-1989", "1990-2001"),right = TRUE)
 length(data$year_group) == nrow(data)
+table(data$year_group)
 ```
 
 ```{r}
@@ -141,6 +142,9 @@ data$district_group <-
 data$district_group <- as.factor(data$district_group)
 sum(table(data$district_group)) == nrow(data)
 ```
+```{r}
+table(data$district_group)
+```
 
 ```{r}
 data_bn <- data[, !(names(data) %in% c("yearc", "district"))]
@@ -151,6 +155,12 @@ data_bn$area <- as.numeric(data_bn$area)
 ```{r}
 data_disc <- discretize(data_bn, method = "hartemink",breaks = 3,ibreaks = 60,
                         idisc = "quantile")
+```
+```{r}
+table(data_disc$rent)
+table(data_disc$area)
+```
+```{r}
 str(data_disc)
 ```
 
@@ -239,6 +249,10 @@ results <- data.frame(
 results
 ```
 hc (75%)
+```{r}
+graphviz.plot(avgnet_hc, main = "Final Model")
+```
+
 ```{r}
 final_mod_dag=averaged.network(boot_hc[boot_hc$direction>=0.5,],threshold = 0.75)
 ```
