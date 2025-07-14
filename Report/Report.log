@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.8.29)  14 JUL 2025 09:32
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.8.29)  14 JUL 2025 11:29
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1421,16 +1421,24 @@ File: ts1cmtt.fd 2023/04/13 v2.5m Standard LaTeX font definitions
 [1
 
 {C:/Users/ADMIN/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
+<unnamed-chunk-10-1.png, id=66, 505.89pt x 361.35pt>
+File: unnamed-chunk-10-1.png Graphic file (type png)
+<use unnamed-chunk-10-1.png>
+Package pdftex.def Info: unnamed-chunk-10-1.png  used on input line 181.
+(pdftex.def)             Requested size: 540.60239pt x 386.14996pt.
 
-[2]
-<unnamed-chunk-30-2.png, id=70, 505.89pt x 361.35pt>
+
+[2 <./unnamed-chunk-10-1.png>]
+
+[3]
+<unnamed-chunk-30-2.png, id=112, 505.89pt x 361.35pt>
 File: unnamed-chunk-30-2.png Graphic file (type png)
 <use unnamed-chunk-30-2.png>
-Package pdftex.def Info: unnamed-chunk-30-2.png  used on input line 166.
+Package pdftex.def Info: unnamed-chunk-30-2.png  used on input line 212.
 (pdftex.def)             Requested size: 324.36473pt x 231.69328pt.
 
 
-[3 <./unnamed-chunk-30-2.png>] (Report.aux)
+[4 <./unnamed-chunk-30-2.png>] (Report.aux)
  ***********
 LaTeX2e <2024-06-01> patch level 2
 L3 programming layer <2024-07-20>
@@ -1439,28 +1447,29 @@ Package rerunfilecheck Info: File `Report.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 37163 strings out of 473899
- 843164 string characters out of 5726500
+ 37228 strings out of 473899
+ 844128 string characters out of 5726500
  2692960 words of memory out of 5000000
- 59370 multiletter control sequences out of 15000+600000
- 575092 words of font info for 75 fonts, out of 8000000 for 9000
+ 59397 multiletter control sequences out of 15000+600000
+ 576400 words of font info for 77 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 99i,7n,101p,725b,1388s stack positions out of 10000i,1000n,20000p,200000b,200000s
- <C:\Users\ADMIN\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tctt
-0900.pk><C:/Users/ADMIN/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfon
-ts/cm/cmex10.pfb><C:/Users/ADMIN/AppData/Local/Programs/MiKTeX/fonts/type1/publ
-ic/amsfonts/cm/cmmi10.pfb><C:/Users/ADMIN/AppData/Local/Programs/MiKTeX/fonts/t
-ype1/public/amsfonts/cm/cmr10.pfb><C:/Users/ADMIN/AppData/Local/Programs/MiKTeX
-/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/ADMIN/AppData/Local/Programs
-/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/ADMIN/AppData/Local
-/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/ADMIN/AppDa
-ta/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/Use
-rs/ADMIN/AppData/Local/Programs/MiKTeX/fonts/type1/vntex/vnr/vnbx12.pfb><C:/Use
-rs/ADMIN/AppData/Local/Programs/MiKTeX/fonts/type1/vntex/vnr/vnr10.pfb><C:/User
-s/ADMIN/AppData/Local/Programs/MiKTeX/fonts/type1/vntex/vnr/vntt9.pfb>
-Output written on Report.pdf (3 pages, 120948 bytes).
+ 99i,7n,101p,725b,2092s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ <C:\Users\ADMIN\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm
+1000.pk> <C:\Users\ADMIN\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi60
+0\tctt0900.pk><C:/Users/ADMIN/AppData/Local/Programs/MiKTeX/fonts/type1/public/
+amsfonts/cm/cmex10.pfb><C:/Users/ADMIN/AppData/Local/Programs/MiKTeX/fonts/type
+1/public/amsfonts/cm/cmmi10.pfb><C:/Users/ADMIN/AppData/Local/Programs/MiKTeX/f
+onts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/ADMIN/AppData/Local/Programs/
+MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/ADMIN/AppData/Local/Pr
+ograms/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/ADMIN/AppData
+/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/ADMIN
+/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb><
+C:/Users/ADMIN/AppData/Local/Programs/MiKTeX/fonts/type1/vntex/vnr/vnbx12.pfb><
+C:/Users/ADMIN/AppData/Local/Programs/MiKTeX/fonts/type1/vntex/vnr/vnr10.pfb><C
+:/Users/ADMIN/AppData/Local/Programs/MiKTeX/fonts/type1/vntex/vnr/vntt9.pfb>
+Output written on Report.pdf (4 pages, 145018 bytes).
 PDF statistics:
- 141 PDF objects out of 1000 (max. 8388607)
- 54 named destinations out of 1000 (max. 500000)
- 18 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 194 PDF objects out of 1000 (max. 8388607)
+ 90 named destinations out of 1000 (max. 500000)
+ 23 words of extra memory for PDF output out of 10000 (max. 10000000)
 

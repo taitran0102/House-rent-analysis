@@ -46,14 +46,11 @@ data$rentsqm[100]
 ```
 
 ```{r}
-# (1) Bỏ biến rent
 data$rentsqm <- NULL
 ```
 
 ```{r}
 head(sort(table(data$district), decreasing = TRUE), 7)
-head(sort(table(data$district[data$location %in% c("top", "good")]), 
-          decreasing = TRUE),7)
 ```
 
 ```{r}
@@ -76,23 +73,11 @@ feature_summary <- data.frame(
 print(feature_summary)
 ```
 
-```{r}
-head(sort(table(data$district[data$bathextra == "yes" &
-    data$cheating == "yes" &  data$upkitchen == "yes" &
-    data$wwater == "yes" &data$bathtile=="yes"
-    ]), decreasing = TRUE), 7)
-```
 
 ```{r}
 library(DataExplorer)
 plot_histogram(data)
 ```
-
-```{r}
-shapiro.test(data$rent)
-shapiro.test(data$area)
-```
-
 ```{r}
 table(data$room)
 table(data$yearc)

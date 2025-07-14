@@ -90,7 +90,7 @@
 
 \begin{document}
 \[
-	\boxed{\huge \textbf{House Rental Price Analysis}}
+	\boxed{\huge \textbf{House Rent Analysis}}
 \]
 \section*{Data Preparation}
 I have introduced the dataset \lstinline[language=R]|munichrent03| which is integrated in the R package \lstinline[language=R]|LinRegInteractive|, available at \href{https://github.com/taitran0102/rent-analysis/blob/main/README.md}{README.md} file. Therefore, I can simply load this dataset to begin the subsequent steps of the analysis.
@@ -155,6 +155,52 @@ Since \lstinline[language=R]|rentsqm| is a derived variable, I chose to exclude 
 > data$rentsqm <- NULL
 \end{lstlisting}
 \section*{Exploratory Data Analysis}
+Subsequently, I conducted an Exploratory Data Analysis (EDA) to gain initial insights into the dataset. A few key findings from this phase include:
+\begin{itemize}
+	\item The 7 districts with the largest number of houses
+	\begin{lstlisting}[language=R]
+Neuh-Nymp  Lud-Isar   Au-Haid  SchwWest    Maxvor      Laim   Ram-Per 
+177        161        139       137        132         117       115 
+	\end{lstlisting}
+	\item The 7 districts with the highest number of houses where the location is classified as either “top” or “good”:
+		\begin{lstlisting}[language=R]
+Maxvor   Neuh-Nymp    Lud-Isar    SchwWest     Au-Haid Schwab-Frei    Trud-Rie 
+118         116          97          96          81          50          37 
+	\end{lstlisting}
+	\item The proportion of houses equipped with each feature:
+	\begin{lstlisting}[language=R]
+    Feature Count Percent
+1 bathextra   191     9.3
+2  bathtile  1673    81.5
+3  cheating  1878    91.5
+4 upkitchen   150     7.3
+5    wwater  1981    96.5
+	\end{lstlisting}
+	\item The distribution of the numerical variables in the dataset
+	\begin{figure}[H]
+		\centering \includegraphics[width=\textwidth]{unnamed-chunk-10-1.png}
+	\end{figure}
+	\item The variable\lstinline[language=R]|yearc| represents discrete individual years, and the number of rooms(\lstinline[language=R]|room|)ranges only from 1 to 6.
+		\begin{lstlisting}[language=R]
+> table(data$room) #Count for each number of room
+
+1   2   3   4   5   6 
+255 715 759 263  47  14 
+> table(data$yearc) #Count for each year
+
+1918   1924   1939   1948   1957 1957.5   1960   1966   1967   1968 
+409     69     14    105    225     68    143    228     35     23 
+1969   1970   1971   1972   1973   1974   1975   1976   1977   1978 
+44     46     35     89     55     30     16      7      6      5 
+1979   1980   1981   1982   1983   1984   1985   1986   1987   1988 
+6     17     15      8     40     17     20     11     20     13 
+1989   1990   1991   1992   1993   1994   1995   1996   1997   1998 
+15     10     14     24     41     13      9     20     12     14 
+1998.5   1999   2000   2001 
+32      7     18      5 
+	\end{lstlisting}
+\end{itemize}
+
 \section*{Graphical Model Learning}
 \section*{Inference and Querying}
 \newpage
