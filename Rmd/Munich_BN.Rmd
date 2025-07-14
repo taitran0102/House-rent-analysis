@@ -1,8 +1,9 @@
 ---
-title: "House Price Analysis using Bayesian Networks"
+title: "Rent Analysis"
 output:
-  word_document:
+  html_document:
     toc: true
+    df_print: paged
   html_notebook:
     toc: true
     fig_width: 3
@@ -10,9 +11,8 @@ output:
     fig_caption: true
   pdf_document:
     toc: true
-  html_document:
+  word_document:
     toc: true
-    df_print: paged
 editor_options:
   chunk_output_type: inline
 ---
