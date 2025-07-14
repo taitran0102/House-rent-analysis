@@ -267,116 +267,12 @@ names(has_na)[has_na]
 ```
 
 ```{r}
-gr_fit <- as.grain(fit)
+fit$rooms
+fit$location
 ```
-
 ```{r}
-bnlearn::parents(fit,"rent")
-bnlearn::children(fit,"rent")
+dsep(fit,x="rooms",y="rent",z="area")
 ```
-
 ```{r}
-dsep(fit,"district_group","bathextra","rent")
-data_disc[c(18),][c(2,4,7:8,11,1)]
-```
-
-```{r}
-data_disc[c(114),][c(2,4,7:8,11,1)]
-```
-
-```{r}
-dsep(fit,"rent","rooms","area")
-```
-
-```{r}
-dsep(fit,"rent","location","year_group")
-dsep(fit,"rent","district_group","year_group")
-dsep(fit,"rent","cheating","year_group")
-```
-
-```{r}
-dsep(fit,"area","year_group")
-dsep(fit,"rooms","district_group")
-dsep(fit,"area","cheating")
-dsep(fit,"area","location")
-dsep(fit,"area","year_group","rent")
-dsep(fit,"rooms","district_group","rent")
-dsep(fit,"area","cheating","rent")
-dsep(fit,"area","location","rent")
-```
-
-```{r}
-library(lattice)
-districts <- levels(data_disc$district_group)
-loc_levels <- c("good", "top")
-distr <- do.call(rbind, lapply(districts, function(d) {
-  prob <- querygrain(setEvidence(gr_fit, evidence = list(district_group = d)), nodes = "location")$location
-  data.frame(District = d, Location = loc_levels, Prob = as.numeric(prob[loc_levels]))
-}))
-barchart(Location ~ Prob | District, data = distr,
-         layout = c(3, 1), xlab = "probability",
-         strip = strip.custom(factor.levels = paste("Pr(location |", districts, ")")),
-         col = c("gray40", "gray80"),
-         panel = function(...) {
-           panel.barchart(...)
-           panel.grid(h = 0, v = -1)
-         })
-```
-
-```{r}
-levels(data_disc$rent)
-cpquery(fit,event = rent %in% c("[77.31,406.132]","(406.132,687.072]"),
-        evidence = (district_group == "Area1"),
-        n = 10^5)
-cpquery(fit,event = rent %in% c("[77.31,406.132]","(406.132,687.072]"),
-        evidence = (district_group == "Area2"),
-        n = 10^5)
-cpquery(fit,event = rent %in% c("[77.31,406.132]","(406.132,687.072]"),
-        evidence = (district_group == "Area3"),
-        n = 10^5)
-```
-
-```{r}
-querygrain(setEvidence(gr_fit, nodes = "cheating", states = "yes"),nodes = c("wwater"),type = "joint")
-```
-
-```{r}
-levels(data_disc$year_group)
-querygrain(setEvidence(gr_fit, nodes = "year_group", states = "1918-1959"),
-           nodes = c("cheating"),type = "joint")["yes"]
-
-querygrain(setEvidence(gr_fit, nodes = "year_group", states = "1960-1969"),
-           nodes = c("cheating"),type = "joint")["yes"]
-
-querygrain(setEvidence(gr_fit, nodes = "year_group", states = "1990-2001"),
-           nodes = c("cheating"),type = "joint")["yes"]
-```
-
-```{r}
-levels(data_disc$rent)
-querygrain(setEvidence(gr_fit, nodes = "year_group", states = "1918-1959"),
-           nodes = c("cheating"),type = "joint")["yes"]
-
-querygrain(setEvidence(gr_fit, nodes = "year_group", states = "1960-1969"),
-           nodes = c("cheating"),type = "joint")["yes"]
-
-querygrain(setEvidence(gr_fit, nodes = "year_group", states = "1990-2001"),
-           nodes = c("cheating"),type = "joint")["yes"]
-```
-
-```{r}
-querygrain(setEvidence(gr_fit, nodes = "rent", states = "[77.31,406.132]"),
-           nodes = c("upkitchen", "bathextra"), type = "joint")["yes","yes"]
-
-querygrain(setEvidence(gr_fit, nodes = "rent", states = "(406.132,687.072]"),
-           nodes = c("upkitchen", "bathextra"), type = "joint")["yes","yes"]
-
-querygrain(setEvidence(gr_fit, nodes = "rent", states = "(687.072,1789.55]"),
-           nodes = c("upkitchen", "bathextra"), type = "joint")["yes","yes"]
-
-querygrain(setEvidence(gr_fit, nodes = "rent", states = "(687.072,1789.55]"),
-           nodes = c("upkitchen"), type = "joint")["yes"]
-
-querygrain(setEvidence(gr_fit, nodes = "rent", states = "(687.072,1789.55]"),
-           nodes = c("bathextra"), type = "joint")["yes"]
+cpquery(fit,event = (bathextra=="yes"),evidence = (district_group == "Area1"),n=10^6)
 ```

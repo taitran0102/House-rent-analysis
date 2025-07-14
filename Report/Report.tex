@@ -90,7 +90,10 @@
 
 \begin{document}
 \[
-	\boxed{\huge \textbf{House Rent Analysis}}
+	\huge \textbf{House Rent Analysis}
+\]
+\[
+\textbf{- Project Report -}
 \]
 \section*{Data Preparation}
 I have introduced the dataset \lstinline[language=R]|munichrent03| which is integrated in the R package \lstinline[language=R]|LinRegInteractive|, available at \textbf{\href{https://github.com/taitran0102/rent-analysis/blob/main/README.md}{README.md}} file. Therefore, I can simply load this dataset to begin the subsequent steps of the analysis.
@@ -272,10 +275,78 @@ The detailed implementation for learning models from the data and selecting the 
 For a deeper understanding of Directed Graphical Models, one may refer to the book: \textbf{\href{https://www.bnlearn.com/book-crc-2ed/}{Bayesian Networks With Examples in R}}.\\
 
 After the model learning process and the selection of the most appropriate model, we arrive at the following result:
-\begin{figure}[H]
-	\centering \includegraphics[width=0.6\textwidth]{unnamed-chunk-30-2.png}
-\end{figure}
-\section*{Inference and Querying}
-\newpage
+\subsubsection*{Model Directed Acylic Graph}
+As mentioned earlier, in a Directed Graphical Model, the joint probability distribution of all variables factorizes according to a directed acyclic graph (DAG). The Final Model has the following DAG structure:
 
+\begin{figure}[H]
+	\centering \includegraphics[width=0.6\textwidth]{unnamed-chunk-33-1.png}
+\end{figure}
+The joint distribution is:
+\[
+\boxed{\begin{aligned}
+		&\quad p(\text{cheating}).p(\text{wwater|cheating}).p(\text{year\_group|cheating}).p(\text{district\_group|year\_group}).p(\text{location|district\_group})\\
+		&\times p(\text{bathtile}).p(\textbf{rent}|\text{year\_group,\, area}).p(\text{bathextra|rent}).p(\text{upkitchen|rent}).p(\text{rooms|rent}).
+\end{aligned}}
+\]
+\subsubsection*{Model Parameters}
+The parameters are conditional probabilities. I will present only a few conditional probability tables for selected variables, rather than displaying all of them, in order to keep the report concise and readable. For example, conditional probability tables of \lstinline[language=R]|rooms| and \lstinline[language=R]|location| are:
+\begin{lstlisting}[language=R]
+> fit$rooms
+
+Parameters of node rooms (multinomial distribution)
+
+Conditional probability table:
+
+area
+rooms     [17,44]     (44,78]    (78,185]
+1 0.736156352 0.025782689 0.001515152
+2 0.263843648 0.565377532 0.030303030
+3 0.000000000 0.390423573 0.507575758
+4 0.000000000 0.018416206 0.368181818
+5 0.000000000 0.000000000 0.071212121
+6 0.000000000 0.000000000 0.021212121
+> fit$location
+
+Parameters of node location (multinomial distribution)
+
+Conditional probability table:
+
+district_group
+location       Area1       Area2       Area3
+good   0.514827018 0.224924012 0.165745856
+normal 0.464579901 0.746200608 0.828729282
+top    0.020593081 0.028875380 0.005524862
+\end{lstlisting}
+\subsubsection*{Model Applications}
+ The \lstinline[language=R]|rent| is directly related to the property's area (\lstinline[language=R]|area|), year of construction (\lstinline[language=R]|year_group|), and the presence of high-quality bathroom and upscale kitchen equipment (\lstinline[language=R]|bathextra| and \lstinline[language=R]|upkitchen|). The remaining factors are indirectly related to the rental price through these direct factors. Given information about the direct factors, the indirect factors become conditionally independent of the rental price.
+\section*{Use the Model}
+Once the model has been learned from the data, it is used for several purposes, including the following:
+\subsection*{Analyzing Conditional Independencies}
+It can be simply understood that when variables X and Y are conditionally independent given Z, this means that once the information about Z is known, knowing X provides no additional information about Y, and vice versa.\\
+
+Directed Graphical Models can help analyze such relationships. Once again, the precise theoretical details can be quite complex to present in full. Fortunately, the \lstinline[language=R]|R| package \lstinline[language=R]|bnlearn| provides a function \lstinline[language=R]|dsep()| that can be used to test the conditional independence between any three variables. \\
+
+For example, once the \lstinline[language=R]|area| of a house is known, the number of rooms (\lstinline[language=R]|rooms|) and the \lstinline[language=R]|rent| become conditionally independent.
+
+\begin{lstlisting}[language=R]
+> dsep(fit,x="rooms",y="rent",z="area")
+[1] TRUE
+\end{lstlisting}
+
+\subsection*{Approximating Conditional Probabilities}
+The \lstinline[language=R]|bnlearn| library also supports efficient approximation of conditional probabilities. As an example, I estimated the likelihood that a house located in \lstinline[language=R]|Area1| is equipped with High quality equipment in the bathroom:
+\[
+\mathbb{P}(\text{bathextra = yes | district\_group = Area1})
+\]
+\begin{lstlisting}[language=R]
+> cpquery(fit,event = (bathextra=="yes"),evidence = (district_group == "Area1"),n=10^6)
+[1] 0.09121026
+> cpquery(fit,event = (bathextra=="yes"),evidence = (district_group == "Area1"),n=10^6)
+[1] 0.09108432
+\end{lstlisting}
+Note that this probability approximation function is based on a randomized algorithm, so the result may vary with each run.
+The argument \lstinline[language=R]|n|  controls the number of samples: the larger its value, the more accurate the result will be, but at the cost of increased computational time.
+
+\section*{Querying and Predicting}
+Based on the above applications, I now perform queries to answer specific questions and make some predictions. The results will be presented here, while the corresponding code can be found in the accompanying R script.
 \end{document}
