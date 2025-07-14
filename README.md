@@ -41,7 +41,7 @@ A Directed Graphical Model, on the other hand, can help us explore conditional i
 
 This project explores the factors that influence rental prices in Munich and makes predictions under given conditions using Directed Graphical Models. The workflow mainly uses `R`, since the project involves only simple data exploration and processing tasks that `R` handles efficiently. Moreover, in the domain of Bayesian Networks, numerous researchers have contributed R packages that greatly facilitate modeling, inference, and visualization. The full `R` code is provided in the file [`Munich_BN.ipynb`](https://github.com/taitran0102/House-price-analysis/blob/main/Munich_BN.ipynb), with the key steps highlighted in this [Report](https://github.com/taitran0102/rent-analysis/blob/main/Report/Report.pdf). In the end, we arrive at the following result:
 <p align="center">
-  <img src="Rmd/figuresBN/unnamed-chunk-28-2.png" alt="Directed Graphical Models" width="500"/>
+  <img src="Rmd/figuresBN/unnamed-chunk-33-1.png" alt="Directed Graphical Models" width="500"/>
 </p>
 <p align="center">
   <em>Directed Acyclic Graph of the Final Model</em>
