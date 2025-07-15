@@ -26,7 +26,13 @@ knitr::opts_chunk$set(fig.path = "figuresBN/")
 library(LinRegInteractive)
 data(munichrent03)
 data <- munichrent03
+
+#install.packages("openxlsx")
+library(openxlsx)
+write.xlsx(data, file = "munichrent03.xlsx")
 ```
+
+
 # Load the dataset
 ```{r}
 str(data)
