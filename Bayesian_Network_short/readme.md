@@ -1,3 +1,5 @@
+#### Trình bày một số ý chính về BN: sơ lược khái niệm, cách khai thác một mô hình, ví dụ đơn giản để thấy,...
+
 A Directed Graphical Model (often called a Bayesian Network) consists of a joint probability distribution and a directed acyclic graph (DAG), such that the joint distribution can be factorized according to the structure of the DAG. For example, if we have the DAG:
 <p align="center">
   <img src="intro_DAG.png" alt="Directed Graphical Models" width="250"/>
