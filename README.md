@@ -28,7 +28,7 @@ Sample of 2,053 appartments from the data collected for the preparation of the M
 
 Source: [https://data.ub.uni-muenchen.de/2/](https://data.ub.uni-muenchen.de/2/), for more details see the [Package description](https://cran.r-project.org/web/packages/LinRegInteractive/LinRegInteractive.pdf) (page 26).
 
-**Export the dataset as a csv file**:
+2. **Export the dataset as a csv file**:
 
 ```{r}
 write.csv(munichrent03,file="munichrent03.csv")
