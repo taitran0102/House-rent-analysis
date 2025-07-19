@@ -47,18 +47,10 @@ Then the joint probability distribution factorizes as: `p(x,y,z)=p(x)p(y|x)p(z|x
 
 Directed Graphical Models are useful for reasoning, decision-making, and prediction tasks. In this project, I will select a directed graphical model from a dataset to analyze relationships, extract meaningful insights, and make predictions.
 
-### Key takeaways
+### Tasks:
+| Description | Tools|
+|--|--|
+|Export data from `R`| `R`|
+|Data Exploration | `Python`|
 
-
-This project explores the factors that influence rental prices in Munich and makes predictions under given conditions using Directed Graphical Models. The workflow mainly uses `R`, since the project involves only simple data exploration and processing tasks that `R` handles efficiently. Moreover, in the domain of Bayesian Networks, numerous researchers have contributed R packages that greatly facilitate modeling, inference, and visualization. The full `R` code is provided in the file [`Munich_BN.ipynb`](https://github.com/taitran0102/House-price-analysis/blob/main/Munich_BN.ipynb), with the key steps highlighted in this [Report](https://github.com/taitran0102/rent-analysis/blob/main/Report/Report.pdf). In the end, we arrive at the following result:
-<p align="center">
-  <img src="Rmd/figuresBN/unnamed-chunk-33-1.png" alt="Directed Graphical Models" width="500"/>
-</p>
-<p align="center">
-  <em>Directed Acyclic Graph of the Final Model</em>
-</p>
-
-The rental price (`rent`) is directly related to the property's area (`area`), year of construction (`year_group`, a grouped version of `yearc` with reduced number of levels), and the presence of high-quality bathroom and upscale kitchen equipment (`bathextra` and `upkitchen`). The remaining factors are indirectly related to the rental price through these direct factors. Given information about the direct factors, the indirect factors become conditionally independent of the rental price.
-
-For predicting purpose, we can compute the conditional probability like ... (see Section ... of the [Report](https://github.com/taitran0102/rent-analysis/blob/main/Report/Report.pdf) ) which answer for the question ...
 
