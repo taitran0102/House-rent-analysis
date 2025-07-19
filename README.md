@@ -72,5 +72,5 @@ Directed Graphical Models are useful for reasoning, decision-making, and predict
 Trả lời các câu hỏi đã được đặt ra. Rút ra các insights thêm nếu có. Trích dẫn đến các file code để thấy rõ hơn.
 
 $$
-\mathcal{P}(X>1)=\int_{1}^{\infty} f_{X}(x) dx
+\mathcal{P}(X>1)=\int_{1}^{\infty} f_{X}(x) dx = \frac{\pi}{2}
 $$
