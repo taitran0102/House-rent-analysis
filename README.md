@@ -8,10 +8,6 @@ install.packages("LinRegInteractive")
 library(LinRegInteractive)
 data(munichrent03)
 ```
-- Export the dataset as a csv file:
-```{r}
-write.csv(munichrent03,file="munichrent03.csv")
-```
 Sample of 2,053 appartments from the data collected for the preparation of the Munich rent index 2003. A data frame with 2,053 observations on the following 12 variables:
 - `rent`: Net rent in EUR (numeric).
 - `rentsqm`: Net rent per square meter in EUR (numeric).
@@ -27,8 +23,10 @@ Sample of 2,053 appartments from the data collected for the preparation of the M
 - `wwater` : Hot water supply available? (Factor)
 
 Source: [https://data.ub.uni-muenchen.de/2/](https://data.ub.uni-muenchen.de/2/), for more details see the [Package description](https://cran.r-project.org/web/packages/LinRegInteractive/LinRegInteractive.pdf) (page 26).
-
-
+- Export the dataset as a csv file:
+```{r}
+write.csv(munichrent03,file="munichrent03.csv")
+```
 
 From the description of this dataset, we can come up with several business questions, such as: What factors (direct or indirect) influence the rent? Which district has the highest rental prices? If a house is equipped with premium amenities, what price segment is it most likely to belong to? and so on. These business questions can be addressed through common data analysis methods, including data exploration, descriptive statistics, and visual tools that reveal patterns and relationships. 
 
