@@ -42,7 +42,7 @@ From the description of this dataset, we can come up with several business quest
 - If a house is equipped with premium amenities, what price segment is it most likely to belong to? and so on. 
 
 $$ 
-x
+\int_{1}^{\infty}
 $$
 
 These business questions can be addressed through common data analysis methods, including data exploration, descriptive statistics, and visual tools that reveal patterns and relationships. 
