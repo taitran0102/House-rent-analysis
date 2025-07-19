@@ -2,14 +2,14 @@
 
 <u>**Dataset properties**</u>:
 
-- [No missing values](#missing-values-blank-check).
+- No missing values.
 - Some numeric variables are not actually continous: 
-    - [`yearc`](#yearc): represents the year of construction and only takes discrete year values.
-    - [`rooms`](#rooms): indicates the number of rooms, which are integers ranging from 1 to 6.
+    - `yearc`: represents the year of construction and only takes discrete year values.
+    - `rooms`: indicates the number of rooms, which are integers ranging from 1 to 6.
 
 <u>**Findings**</u>:
 
-- [Most apartments are equipped with basic facilities, whereas high-end or upscale features are relatively uncommon.](#Categorical-variables)
+- Most apartments are equipped with basic facilities, whereas high-end or upscale features are relatively uncommon.
 
 
     |Variable|Description|Yes rate (%)|
@@ -34,9 +34,9 @@
     |Bogenh |98|
     |Ugies-Har |82|
 
-- [Houses equipped with amenities tend to have a higher average `rent`](#rent-by-amenities), which is a reasonable trend in reality.
+- Houses equipped with amenities tend to have a higher average `rent`, which is a reasonable trend in reality.
 
-- [`location` clearly affects `rent`](#rent-by-location-and-district). Apartments in `good` and `top` locations tend to have higher average rents than those in `normal` areas, which aligns with real-world trends. However, [most apartments fall into the `normal` and `good` categories:](#rent-by-location-and-district)
+- `location` clearly affects `rent`. Apartments in `good` and `top` locations tend to have higher average rents than those in `normal` areas, which aligns with real-world trends. However, most apartments fall into the `normal` and `good` categories:
 
     |`location`|count|
     |--|--|
@@ -46,4 +46,4 @@
 
     and many of them still have very high rents (sometimes matching or exceeding those in the `top` group), suggesting that `location` is not the only factor influencing `rent`.
     
-- [Finally, `area` and number of rooms (`rooms`) have a positive linear correlation with `rent`, meaning that `rent` tends to increase as these two variables increase. Meanwhile, the correlation between year of construction (`yearc`) and `rent` is quite weak](#corelation).
+- Finally, `area` and number of rooms (`rooms`) have a positive linear correlation with `rent`, meaning that `rent` tends to increase as these two variables increase. Meanwhile, the correlation between year of construction (`yearc`) and `rent` is quite weak.
