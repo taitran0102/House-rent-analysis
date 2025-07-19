@@ -1,7 +1,7 @@
 # Project Summary
 ### Introduction
 
-The dataset used in this project is integrated within the `LinRegInteractive` package (`R` package) and is described as follows:
+The dataset used in this project is integrated within the `LinRegInteractive` (`R` package) and is described as follows:
 ```{r}
 # R code to see the dataset description
 library(LinRegInteractive)
