@@ -73,7 +73,7 @@ Trả lời các câu hỏi đã được đặt ra. Rút ra các insights thêm
 
 $$
 \begin{aligned}
-\mathcal{P}(X>1)=\int_{1}^{\infty} f_{X}(x) dx &= \dots \\
+\mathcal{P}(\text{location} = \text{top} \mid \text{bathextra} = \text{yes})=\int_{1}^{\infty} f_{X}(x) dx &= \dots \\
                                                &=\frac{\pi}{2}
 \end{aligned}
 $$
