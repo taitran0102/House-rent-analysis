@@ -1,12 +1,16 @@
 # Project Summary
 ### Introduction
 
-The dataset used in this project is integrated within the `LinRegInteractive` (`R` package) and is described as follows:
+The dataset used in this project is integrated within the `LinRegInteractive` (`R` package). Use codes below to:
+- See the dataset description:
 ```{r}
-# R code to see the dataset description
+install.packages("LinRegInteractive")
 library(LinRegInteractive)
 data(munichrent03)
-?munichrent03
+```
+- Export the dataset as a csv file:
+```{r}
+write.csv(munichrent03,file="munichrent03.csv")
 ```
 Sample of 2,053 appartments from the data collected for the preparation of the Munich rent index 2003. A data frame with 2,053 observations on the following 12 variables:
 - `rent`: Net rent in EUR (numeric).
