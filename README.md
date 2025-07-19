@@ -49,7 +49,8 @@ These business questions can be addressed through common data analysis methods, 
 
 A Directed Graphical Model, on the other hand, can help us explore conditional independence relationships between variables. For example, we may want to know whether the number of rooms in a house is related to its rental price when the living area is already known. Beyond that, if we have questions that involve certain known conditions, the model allows us to compute conditional probabilities to answer them. This process is known as querying the model. 
 
-Nếu cần chi tiết hơn một chút về BN, xem
+Nếu cần chi tiết hơn một chút về BN, xem [Bayesian_Network_short](Bayesian_Network_short)
+
 ---
 
 ### Tasks:
