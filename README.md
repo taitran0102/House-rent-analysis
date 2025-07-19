@@ -57,7 +57,8 @@ Nếu cần chi tiết hơn một chút về BN, xem [Bayesian_Network_short](Ba
 | Description | Tools|
 |--|--|
 |Export data from `R`| `R`|
-|Data Exploration | `Python`|
+|Exploratory Data Analysis | `Python`|
+|Analysis using BN| `R`|
 
 ---
 
