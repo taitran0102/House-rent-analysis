@@ -2,7 +2,9 @@
 ### Introduction
 
 The dataset used in this project is integrated within the `LinRegInteractive` (`R` package). Use codes below to:
-- See the dataset description:
+
+**See the dataset description**:
+
 ```{r}
 install.packages("LinRegInteractive")
 library(LinRegInteractive)
@@ -23,7 +25,9 @@ Sample of 2,053 appartments from the data collected for the preparation of the M
 - `wwater` : Hot water supply available? (Factor)
 
 Source: [https://data.ub.uni-muenchen.de/2/](https://data.ub.uni-muenchen.de/2/), for more details see the [Package description](https://cran.r-project.org/web/packages/LinRegInteractive/LinRegInteractive.pdf) (page 26).
-- Export the dataset as a csv file:
+
+**Export the dataset as a csv file**:
+
 ```{r}
 write.csv(munichrent03,file="munichrent03.csv")
 ```
