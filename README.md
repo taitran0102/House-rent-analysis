@@ -3,7 +3,8 @@
 
 The dataset used in this project is integrated within the `LinRegInteractive` (`R` package). Use codes below to:
 
-**See the dataset description**:
+1. **See the dataset description**:
+
 
 ```{r}
 install.packages("LinRegInteractive")
