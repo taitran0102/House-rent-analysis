@@ -53,4 +53,5 @@ Directed Graphical Models are useful for reasoning, decision-making, and predict
 |Export data from `R`| `R`|
 |Data Exploration | `Python`|
 
-
+### Key takeaways
+Trả lời các câu hỏi đã được đặt ra. Rút ra các insights thêm nếu có. Trích dẫn đến các file code để thấy rõ hơn.
