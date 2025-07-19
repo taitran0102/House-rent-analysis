@@ -60,6 +60,7 @@ Nếu cần chi tiết hơn một chút về BN, xem [Bayesian_Network_short](Ba
 |Exploratory Data Analysis | `Python`|
 |Analysis using BN| `R`|
 
+
 ---
 
 ### Key takeaways
